@@ -1,0 +1,23 @@
+.form-label-group>label {
+    display: none;
+}
+
+.form-label-group>input{
+    margin: 2%;
+}
+
+#fb_social_btn{
+    padding: 5px;
+}
+
+#fb_social_btn:hover{
+    color: blue;
+}
+
+#google_social_btn:hover{
+    color: orange;
+}
+
+#google_social_btn{
+    padding: 5px;
+}

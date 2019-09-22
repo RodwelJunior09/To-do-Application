@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_page.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-social.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Sign Up Page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="login_container col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Sign In</h3>
+                    <form action="" method="post" class="form-signin">
+                        <div class="username_field_container form-group">
+                            <label for="email_input">Username Field</label>
+                            <input type="text" class="username_field form-control" id="email_input" placeholder="Email Adress" required autofocus>
+                        </div>
+                        <div class="password_field_container form-group">
+                            <label for="password_input">Password Field</label>
+                            <input type="password" class="password_field form-control" id="password_input" placeholder="Password" required>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3 form-group">
+                            <input type="checkbox" name="remember_user" id="customCheck1" class="custom-control-input">
+                            <label for="customCheck1" class="custom-control-label">Remember Me</label>
+                        </div>
+                        <div class="submit-button-container form-group">
+                            <button class="submitbutton btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button>
+                            <hr class="mr-4">
+                            <h5 class="text-center">Sign in with:</h5>
+                            <div class="social_media_sign_in">
+                                <button class="btn btn-block btn-lg text-uppercase" id="fb_social_btn"><i class="fa fa-facebook" style="padding: 5px"></i>Sign In with Facebook</button>
+                                <button class="btn btn-block btn-lg text-uppercase" id="google_social_btn"><i class="fa fa-google" style="padding: 5px"></i>Sign In with Google</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "Base.html" %}
+{% block title %} Home Page {% endblock %}
+{% block content %}
+<div class="row">
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete List Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure that you wanna delete this list ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="card-content" class="row">
+        {% for data in apidata %}
+        <div class="card col d-flex flex-wrap">
+            <div class="card-body">
+                <h5 class="card-title">{{data.title}}</h5>
+                <p class="card-text">{{data.objective}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-content">{{data.content}}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Edit Card</a>
+                <!-- Button trigger modal -->
+                <button class="card-link btn btn-primary" data-toggle="modal" data-target="#myModal">Delete
+                    Card</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<!-- <script src="{{ url_for('static', filename='js/react_home_page.jsx')}}"></script> -->
+<script src="{{ url_for('static', filename='js/homePage.js')}}"></script>
+{% endblock %}

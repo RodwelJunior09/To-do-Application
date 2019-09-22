@@ -1,0 +1,31 @@
+{% extends "Base.html" %}
+{% block title %} Create a new list {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 d-flex justify-content-center">
+        <div class="card text-center">
+            <div class="card-body">
+                <h1 class="card-title">Fill the data to create the list:</h1>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="title-input">Enter the title of the to-do list</label>
+                        {{form.title(class_="form-control")}}
+                        <!-- <input type="text" class="form-control" id="title-input" name="title"> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="objective-input">Objective of this to-do list</label>
+                        {{form.objective(class_="form-control")}}
+                        <!-- <input type="text" class="form-control" id="objective-input" name="objective"> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="">Enter the list of To-Do's:</label>
+                        {{form.content(class_="form-control")}}
+                        <!-- <textarea name="to-dos" id="to-dos_input" cols="30" rows="10" class="form-control"></textarea> -->
+                    </div>
+                    <button class="btn btn-primary btn-lg">Submit Todo's</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
