@@ -32,9 +32,10 @@ def login_page():
 
 @app.route('/', methods=["GET"])
 def homePage():
+    form = CreateToDo(request.form)
     data = get_todo_data()
     all_data = todo_api_json(data)
-    return render_template("HomePage.html", apidata=all_data)
+    return render_template("HomePage.html", apidata=all_data, form=form)
 
 
 def todo_api_json(data):
