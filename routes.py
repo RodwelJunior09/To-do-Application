@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, flash, redirect, url_for, jso
 from flask_login import LoginManager
 from forms.loginForm import LoginForm
 from forms.create_list import CreateToDo
-from database_connection import add_todo_data, get_todo_data
+from forms.edit_form import EditListForm
+from database_connection import add_todo_data, get_todo_data, delete_record, update_records
 
 app = Flask(__name__, static_url_path="/static")
 login_manager = LoginManager()
@@ -16,9 +17,15 @@ def CreatingList():
         return redirect(url_for('homePage'))
     return render_template('CreateList.html', form=form)
 
-# @app.route('/delete_list', methods=["GET"])
-# def DeletePost():
-
+# Finish the edit part of the page
+@app.route('/edit/<int:id>', methods=["POST"])
+def edit_list(id):
+    if request.method == "POST":
+        title = request.form.get("title_edit")
+        objective = request.form.get("objective_edit")
+        content = request.form.get("content_edit")
+        update_records(title, objective, content, id)
+        return redirect(url_for('homePage'))
 
 @app.route('/api/todo_list', methods=["GET"])
 def todo_api():
@@ -30,13 +37,19 @@ def todo_api():
 def login_page():
     return render_template("LoginPage.html")
 
-@app.route('/', methods=["GET"])
+@app.route('/', methods=["GET", "POST"])
 def homePage():
-    form = CreateToDo(request.form)
     data = get_todo_data()
     all_data = todo_api_json(data)
-    return render_template("HomePage.html", apidata=all_data, form=form)
+    return render_template("HomePage.html", apidata=all_data)
 
+
+@app.route('/delete/<int:id>', methods=["POST"])
+def delete_list(id):
+    if request.method == "POST":
+        delete_record(id)
+        print("Sucessfully Deleting")
+        return redirect(url_for('homePage'))
 
 def todo_api_json(data):
     todo_data = []
