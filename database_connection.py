@@ -16,7 +16,16 @@ def add_todo_data(title, objective, content):
         print("Added sucessfully")
     except (Exception, psycopg2.DatabaseError) as identifier:
         print("There is error adding values to database", identifier)
-        
+
+def update_records(new_title, new_objective, new_content, id):
+    try:
+        cur = conn.cursor()
+        cur.execute("UPDATE todos_list SET title_item = '{}', objective_item = '{}', content = '{}' WHERE item_id = {};".format(new_title, new_objective, new_content, id))
+        conn.commit()
+        print("Updated Sucessfully")
+    except (Exception, psycopg2.DatabaseError) as identifier:
+        print("There is an error updating values to database", identifier)
+
 def get_todo_data():
     try:
         cur = conn.cursor()
@@ -25,4 +34,12 @@ def get_todo_data():
         return all_data
     except (Exception, psycopg2.DatabaseError) as identifier:
         print("There is a error selecting the values on database", identifier)
+
+def delete_record(id_to_delete):
+    try:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM todos_list WHERE item_id = {}".format(id_to_delete))
+        print("ID number {} deleted.".format(id_to_delete))
+    except (Exception, psycopg2.DatabaseError) as identifier:
+        print("There is an error deleting the record on database", identifier)
 
