@@ -43,7 +43,6 @@ def homePage():
     all_data = todo_api_json(data)
     return render_template("HomePage.html", apidata=all_data)
 
-
 @app.route('/delete/<int:id>', methods=["POST"])
 def delete_list(id):
     if request.method == "POST":
