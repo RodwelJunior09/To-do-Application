@@ -1,4 +1,6 @@
+from datetime import date
 import psycopg2
+
 
 conn = None
 try:
@@ -7,6 +9,23 @@ try:
 except (Exception, psycopg2.DatabaseError) as identifier:
     print(identifier)
 
+
+def add_new_user_data(name, email, password):
+    try:
+        cur = conn.cursor()
+        cur.execute("INSERT INTO account (name, password, email, created_on) VALUES ('{}', '{}', '{}', '{}')".format(name, password, email, date.today()))
+        conn.commit()
+        print("Added Sucessfully")
+    except (Exception, psycopg2.DatabaseError) as identifier:
+        print("There is an error adding the user to database", identifier)
+
+def find_user_data(email, password):
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM account where email='{}' and password = '{}'".format(email, password))
+        return True
+    except (Exception, psycopg2.DatabaseError) as identifier:
+        print("There is an error finding the user on the database", identifier)
 
 def add_todo_data(title, objective, content):
     try:
