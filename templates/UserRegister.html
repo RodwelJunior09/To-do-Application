@@ -1,0 +1,34 @@
+{% extends "BaseLoginPage.html" %}
+{% block title %} Registration {% endblock %}
+{% block content %}
+<div class="register_container">
+    <div class="card card-signin my-5" id="registration_box">
+        <div class="card-body">
+            <h3 class="card-title text-center">Register User</h3>
+            <form action="" class="register_user_form" method="POST">
+                <div class="username_field_container form-group">
+                    <label for="name_registration">Name Field:</label>
+                    <input type="text" class="form-control username_field" name="name_registration" id="username_input" placeholder="Enter your name:" required autofocus>
+                </div>
+                <div class="email_field_container form-group">
+                    <label for="email_registration">Email Field:</label>
+                    <input type="email" class="form-control email_field" name="email_registration" id="email_input" placeholder="Enter your email:" required>
+                </div>
+                <div class="password_field_container form-group">
+                    <label for="password_registration">Password Field:</label>
+                    <input type="password" class="form-control password_field" name="password_registration" id="password_input" placeholder="Enter the password:" required>
+                </div>
+                <div class="verify_password_field_container form-group">
+                    <label for="">Verify Password:</label>
+                    <input type="password" name="password_verify" class="form-control verify_password_field" id="verify_pasword_field"
+                        placeholder="Verify the password" required>
+                    <p style="color: red;">{{error_msg}}</p>
+                </div>
+                <div class="submit-button-container form-group">
+                    <button class="submitbutton btn btn-lg btn-primary" type="submit">Register me</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -17,23 +17,26 @@
                 <h5 style="display: inline-block"><a href="{{ url_for('homePage') }}">See All Notes</a></h5>
             </div>
             <div id="actions-container" class="d-flex flex-wrap">
-                <form action="" method="get" class="form-inline">
-                    <input type="text" class="form-control" placeholder="Search list..">
-                    <button class="btn btn-outline-success">Search</button>
-                </form>
-                <button class="btn btn-default">
-                    <a href="{{ url_for('CreatingList') }}">Create a New Note</a>
-                </button>
-                <button class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-log-out"></span> Log Out
-                </button>
+                <div id="search-container" class="d-flex">
+                    <input type="text" class="form-control" placeholder="Search list.." id="search-bar">
+                    <button class="btn btn-outline-success" id="searchButton">Search</button>
+                </div>
+                <div id="actions-links" class="d-flex">
+                    <button class="btn btn-default">
+                        <a href="{{ url_for('CreatingList') }}">Create a New Note</a>
+                    </button>
+                    <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-log-out"></span> Log Out
+                    </button>
+                </div>
             </div>
         </nav>
     </div>
-    <div class="content">{% block content %}{% endblock %}</div>
-
+    <div class="content" id="app">{% block content %}{% endblock %}</div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1/dist/vue-resource.min.js"></script>
 </body>
 {% block script %}
 {% endblock %}

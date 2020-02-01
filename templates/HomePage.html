@@ -2,8 +2,8 @@
 {% block title %} Home Page {% endblock %}
 {% block content %}
 <div class="row">
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -16,27 +16,62 @@
                     Are you sure that you wanna delete this list ?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Ok</button>
+                    <form method="post" id="delete_form">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Ok</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div id="card-content" class="row">
+    <div id="editModal" class="modal fade" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true"
+        role="form">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="card-title">Fill the data to edit the list</h1>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="edit_form">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title-input">Edit the title of the to-do list</label>
+                            <input type="text" class="form-control" v-model="editModal.title" name="title_edit">
+                        </div>
+                        <div class="form-group">
+                            <label for="objective-input">Edit the objective of this to-do list</label>
+                            <input type="text" class="form-control" v-model="editModal.objective" name="objective_edit">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-the-content">Edit the list of to-do's:</label>
+                            <textarea name="content_edit" class="form-control" id="content-textarea" cols="30" rows="10" v-model="editModal.content"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit">Edit the list</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="card-content" class="col-sm-12">
         {% for data in apidata %}
-        <div class="card col d-flex flex-wrap">
+        <div class="card d-flex flex-wrap" title={{ data.title.lower() | replace(" ", "_")}}>
             <div class="card-body">
                 <h5 class="card-title">{{data.title}}</h5>
                 <p class="card-text">{{data.objective}}</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item list-content">{{data.content}}</li>
+                <li class="list-group-item list-content content_list">{{data.content}}</li>
             </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Edit Card</a>
-                <!-- Button trigger modal -->
-                <button class="card-link btn btn-primary" data-toggle="modal" data-target="#myModal">Delete
-                    Card</button>
+            <div class="card-body card-options" id="test">
+                <a href="{{url_for('edit_list', id=data.id)}}" @click="apiData($event) | getID($event) | editPost($event)"
+                    class="card-link edit" data-toggle="modal" data-target="#editModal" id="{{data.id}}">Edit Card</a>
+                <a href="{{url_for('delete_list', id=data.id)}}" @click="getID($event) | deletePost($event)" class="card-link delete"
+                    data-toggle="modal" data-target="#deleteModal" id="{{data.id}}">Delete Card</a>
             </div>
         </div>
         {% endfor %}
